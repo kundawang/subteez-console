@@ -47,4 +47,10 @@ By %s
 	WritingStatus         = "Writing file..."
 	FileWrittenDialogText = "%d bytes written to file %s."
 	ButtonOK              = "OK"
+
+	ExtractingStatus    = "Extracting subtitle..."
+	SubtitleSelectTitle = " Select Subtitle "
+	SubtitleSelectHint  = "Select a subtitle file from the archive:"
+	SubtitleWrittenText = "Subtitle saved to:\n%s"
+	ButtonBack          = "Back"
 )

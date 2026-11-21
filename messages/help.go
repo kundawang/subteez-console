@@ -34,12 +34,22 @@ Example using full address:
          files /subtitles/arcane-league-of-legends-first-season 
 
 `
-	DownloadHelpTopic = `Usage: %s download <Movie ID> <Language> <File ID>
-	
+	DownloadHelpTopic = `Usage: %s download <Movie ID> <Language> <File ID> [Name Hint]
+
 Download file with specified file ID and save it in a file, or write output in stdout on script mode.
+
+When the download is a ZIP archive, the SRT/VTT/ASS subtitles inside it are
+listed and the one matching the requested language is extracted automatically.
+The optional Name Hint disambiguates archives that contain several subtitles
+of the same language (for example "forced" or "sdh"). Plain, single-file
+downloads are saved unchanged.
+
+Extracted files are written with a safe base name; an existing file is never
+overwritten, a unique "name (1).ext" is used instead.
 
 Examples: download arcane-league-of-legends-first-season fa 2625907
           download arcane-league-of-legends-first-season Persian 2625907
+          download arcane-league-of-legends-first-season en 2625907 forced
 
 Example using full address:
           download /subtitles/arcane-league-of-legends-first-season/farsi_persian/2625907

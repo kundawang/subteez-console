@@ -14,6 +14,9 @@ var ErrBadRequest = errors.New("bad request")
 // when an error occured on server and server responded with code 500
 var ErrServer = errors.New("server error")
 
+// when the downloaded response exceeds the configured size limit
+var ErrDownloadTooLarge = errors.New("downloaded file is too large")
+
 // when an error occured on client
 type ClientError struct {
 	message string

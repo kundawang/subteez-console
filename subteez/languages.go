@@ -94,3 +94,26 @@ func ParseLanguage(str string) (Language, error) {
 	}
 	return "", strconv.ErrRange
 }
+
+// LanguageFromDownloadID extracts the requested language code ("en", "fa", ...)
+// from a full download id of the shape
+// "/subtitles/<title>/<download-path-part>/<file-id>". It returns "" when the
+// id does not contain a recognizable language segment.
+func LanguageFromDownloadID(id string) string {
+	parts := strings.Split(id, "/")
+	// "/subtitles/<title>/<language>/<file-id>" splits into
+	// ["", "subtitles", "<title>", "<language>", "<file-id>"]
+	if len(parts) < 5 || parts[1] != "subtitles" {
+		return ""
+	}
+	for _, language := range Languages {
+		pathPart, err := language.GetDownloadPathPart()
+		if err != nil {
+			continue
+		}
+		if strings.EqualFold(pathPart, parts[3]) {
+			return language.GetCode()
+		}
+	}
+	return ""
+}

@@ -66,9 +66,35 @@ Author:   NguyenBich
 
 00:00:00 requesting page "/subtitles/arcane-league-of-legends-first-season/english/2625728" from server
 
-00:00:04 file "arcane-league-of-legends-first-season_HI_english-2625728.zip" saved
+00:00:04 subtitle "arcane-league-of-legends-first-season_HI_english-2625728.srt" extracted from archive and saved
 
 ```
+
+### Archive extraction
+
+Downloads are often multi-language ZIP packs. When a download is detected as a
+ZIP, Subteez Console lists the SRT/VTT/ASS files inside it and extracts the one
+matching the requested language automatically; a plain, single-file download is
+saved unchanged.
+
+* When an archive contains several subtitles of the same language, an optional
+name hint selects among them:
+
+```
+> subteez download arcane-league-of-legends-first-season English 2625728 forced
+
+```
+
+* In TUI mode the packed subtitles are shown in a selection list and the best
+language match is pre-selected.
+* Extracted files use a sanitized base name (archive directory components and
+unsafe paths are never written outside the current directory). If the target
+name already exists, the file is saved as `name (1).ext` instead of being
+overwritten.
+* Archives that exceed the built-in size/entry limits, fail checksum
+verification, contain no supported subtitle or no matching language fail with a
+specific error.
+
 
 * Set tui mode to be enabled without `-tui` option:
 ```
@@ -76,9 +102,10 @@ Author:   NguyenBich
 
 ```
 
-* Print subtitle file content to console:
+* Print subtitle file content to console. For archived downloads the selected
+subtitle (not the raw ZIP) is streamed to stdout:
 ```
-> subteez -script download arcane-league-of-legends-first-season en 2625728 | zcat
+> subteez -script download arcane-league-of-legends-first-season en 2625728
 1
 00:00:19,375 --> 00:00:23,125
 [foreboding music plays]
